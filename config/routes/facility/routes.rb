@@ -24,7 +24,7 @@ SS::Application.routes.draw do
     resources :services, concerns: :deletion
     resources :locations, concerns: :deletion
     resources :categories, concerns: :deletion
-
+    resources :real_estate_searches, concerns: :deletion
     resources :images, concerns: :deletion
     resources :maps, concerns: :deletion
   end
@@ -40,6 +40,8 @@ SS::Application.routes.draw do
     get "search/(map.:format)" => "public#map", cell: "nodes/search"
     get "search/(map-all.:format)" => "public#map_all", cell: "nodes/search"
     get "search/(result.:format)" => "public#result", cell: "nodes/search"
+
+    get "real_estate_search/(index.:format)" => "public#index", cell: "nodes/real_estate_search"
   end
 
   page "facility" do

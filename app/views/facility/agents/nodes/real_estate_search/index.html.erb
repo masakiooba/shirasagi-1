@@ -1,0 +1,52 @@
+<% locations = @items.map(&:locations).flatten.uniq.sort_by{ |item| item.order } %>
+
+<div class="facility-nodes">
+  <% locations.each do |loc| %>
+    <% items = @items.in(location_ids: loc.id).order_by(address: -1) %>
+    <% if items.present? %>
+      <table id="<%= loc.basename %>">
+        <caption><%= loc.name %></caption>
+        <thead>
+          <tr>
+            <th><%= Facility::Node::Page.t :name %></th>
+            <th><%= Facility::Node::Page.t :address %></th>
+            <th><%= Facility::Node::Page.t :tel %></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% items.each do |item| %>
+          <tr>
+            <td><%= link_to item.name, item.url %></td>
+            <td><%= item.address %></td>
+            <td><%= item.tel %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
+</div>
+
+
+<%
+=begin
+%>
+
+<%= javascript_include_tag "/assets/js/jquery.colorbox.js" %>
+<%= stylesheet_link_tag "/assets/css/colorbox/colorbox.css" %>
+
+<%= render_facility_search_map "#map-canvas", markers: @markers, site: @cur_site %>
+
+<%= coffee do %>
+$(window).on "load", ->
+  # setup search modal window
+  $(".ajax-box").on "click", ->
+    $.colorbox({ html: "<%=j render(partial: "modal", locals: { search_path: "./map.html" }) %>"})
+    return false
+<% end %>
+
+<%= render file: "facility/agents/addons/search_result/view/upper" %>
+<%= render file: "facility/agents/addons/search_result/view/map" %>
+<%
+=end
+%>

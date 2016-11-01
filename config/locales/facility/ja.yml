@@ -23,7 +23,8 @@ ja:
       search: 施設の用途を検索
       setting: 施設の用途を選択
       name: 用途
-
+    real_estate_search:
+      name: 空き家バンク
     search: 施設検索
     result: 検索結果
     count: 件
@@ -70,7 +71,6 @@ ja:
       facility/category: 施設の種類
       facility/category_setting: 施設の種類
       facility/opendata_assoc: オープンデータ連携
-
   cms:
     nodes:
       facility/page: 施設情報
@@ -79,7 +79,7 @@ ja:
       facility/service: 施設の用途
       facility/location: 施設のある地域
       facility/search: 施設検索
-
+      facility/real_estate_search: 空き家バンク
   mongoid:
     models:
       facility/image: 施設写真
@@ -117,7 +117,6 @@ ja:
       facility/addon/opendata_assoc:
         opendata_site_ids: オープンデータサイト
         csv_assoc: CSV連携
-
   job:
     models:
       facility/import_job: 施設情報インポート

@@ -6,6 +6,7 @@ module Facility
     Cms::Node.plugin "facility/service"
     Cms::Node.plugin "facility/location"
     Cms::Node.plugin "facility/search"
+    Cms::Node.plugin "facility/real_estate_search"
 
     SS::File.model "facility/file", SS::File
   end

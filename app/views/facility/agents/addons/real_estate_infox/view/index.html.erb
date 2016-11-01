@@ -1,0 +1,37 @@
+<dl class="see body">
+  <% if @cur_node.registration_id.present? %>
+    <dt><%= @cur_node.class.t :registration_id %></dt>
+    <dd><%= @cur_node.registration_id %></dd>
+  <% end %>
+
+  <% if @cur_node.real_estate_address.present? %>
+    <dt><%= @cur_node.class.t :real_estate_address %></dt>
+    <dd><%= @cur_node.real_estate_address %></dd>
+  <% end %>
+
+  <% if @cur_node.price.present? %>
+    <dt><%= @cur_node.class.t :price %></dt>
+    <dd><%= @cur_node.price %></dd>
+  <% end %>
+
+  <% if @cur_node.rent_fee.present? %>
+    <dt><%= @cur_node.class.t :rent_fee %></dt>
+    <dd><%= @cur_node.rent_fee %></dd>
+  <% end %>
+
+  <% if @cur_node.area_size.present? %>
+    <dt><%= @cur_node.class.t :area_size %></dt>
+    <dd><%= @cur_node.area_size %></dd>
+  <% end %>
+
+  <% if @cur_node.floor_layout.present? %>
+    <dt><%= @cur_node.class.t :floor_layout %></dt>
+    <dd><%= @cur_node.floor_layout %></dd>
+  <% end %>
+
+  <% if @cur_node.build_at.present? %>
+    <dt><%= @cur_node.class.t :build_at %></dt>
+    <dd><%= @cur_node.build_at %></dd>
+  <% end %>
+
+</dl>

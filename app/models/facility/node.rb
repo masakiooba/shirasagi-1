@@ -35,6 +35,7 @@ module Facility::Node
     include Cms::Addon::DefaultReleasePlan
     include Cms::Addon::GroupPermission
     include History::Addon::Backup
+    include Facility::Addon::RealEstateInfo
 
     default_scope ->{ where(route: "facility/page") }
 
@@ -205,6 +206,33 @@ module Facility::Node
         cids << node.id
       end
       cond << { :location_ids.in => cids } if cids.present?
+
+      { '$or' => cond }
+    end
+  end
+
+  class RealEstateSearch
+    include Cms::Model::Node
+    include Cms::Addon::NodeSetting
+    include Cms::Addon::Meta
+    include Cms::Addon::NodeList
+    include Cms::Addon::Release
+    include Cms::Addon::GroupPermission
+    include History::Addon::Backup
+    include Facility::Addon::SearchSetting
+    include Facility::Addon::SearchResult
+
+    default_scope ->{ where(route: "facility/real_estate_search") }
+
+    def condition_hash
+      cond = []
+
+      cond << { filename: /^#{parent.filename}\// } if conditions.blank?
+      conditions.each do |url|
+        node = Cms::Node.filename(url).first
+        next unless node
+        cond << { filename: /^#{node.filename}\//, depth: node.depth + 1 }
+      end
 
       { '$or' => cond }
     end
